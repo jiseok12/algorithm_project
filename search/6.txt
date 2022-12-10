@@ -6,5 +6,5 @@ https://ko.wikipedia.org/wiki/Void_%ED%83%80%EC%9E%85
 ----------------------------------------
 search
 void 정의
-void란?
+void 란?
 void 사용법

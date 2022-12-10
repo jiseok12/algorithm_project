@@ -1,8 +1,12 @@
 hello, world
-br
+Hello, World!" 프로그램 (세상아, 안녕!)은 "Hello, world!"를 화면에 출력하는 컴퓨터 프로그램이다
+------------------------------------------------------------------------
+추천 검색 싸이트
 google
 naver
-search
+추천 싸이트
+https://namu.wiki/w/Hello%2C%20world!
+추천 검색어
 hello, world 유레
 c언어 Hello, World 출력하기
 c언어 printf로 Hello, World 출력하기

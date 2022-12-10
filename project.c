@@ -22,6 +22,7 @@ txt파일 위치 찾기 값 오류 수정
 #include<stdlib.h>
 #include<stdbool.h>
 #include<windows.h>
+#include<string.h>
 
 #define STACK_SIZE 100
 #define SEARCH_SIZE 100
@@ -152,7 +153,7 @@ void search_main(){//검색 화면 이동
 
         fgets(searchvalue, SEARCH_SIZE, stdin);//검색어 입력
 
-        if(searchvalue[0]=='1' && strlen(searchvalue)==2){
+        if(searchvalue[0]=='1' && strlen(searchvalue)==2){//1입력 되었을경우 if문 작동
             system("cls");
             break;
         }
@@ -166,11 +167,11 @@ void search_main(){//검색 화면 이동
                 i=1;
                 int j;
 
-                for(j=0;line[j]!='/';j++){
+                for(j=0;line[j]!='/';j++){//줄로 읽은 txt파일 내용 /까지 문자 크기를 구함
                     ;
                 }
-                j=j+2;
-                for(int y=0; line[j]!='\n';y=y*10){
+                j=j+2;// //뒤 숫자 가져오기
+                for(int y=0; line[j]!='\n';y=y*10){//숫자 구하기
                     y=y+(line[j]-'0');
                     se=y;
                     j++;
@@ -179,10 +180,10 @@ void search_main(){//검색 화면 이동
         }
 
         fclose(fp);
-        if(i==0){
+        if(i==0){//검색어가 없을 경우 실행
             printf("찾기 실패 다시 입력 하세요\n");
         }
-        else{
+        else{//검색어가 있을 경우 실행
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 2);//글자 초록색 변경
             char num1[100];
             sprintf(num1,"search/%d.txt", se);
@@ -195,10 +196,93 @@ void search_main(){//검색 화면 이동
             printf("\n□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□\n");
             SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE), 7);//하얀색 변경
             i=0;
+            fclose(fp);
         }
     }
 }
 
+void char_slice(char* line){//i 값을 j에 대입하는 함수
+    int i;
+    for(i=0;line[i]!='/';i++){
+        ;
+    }
+    line[i]='\n';
+    line[i+1]=NULL;
+}
+
+void search_inquiry(){//검색어
+    printf("□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□□\n");
+    printf("검색어 조회\n");
+    int i=0,j,n=50,k,hu;
+    char temp[100];
+    char line[100][100];
+    FILE* fp = fopen("test.txt","r");
+
+    while(fgets(line[i],sizeof(line[i]), fp) != NULL){//줄별로 읽기
+        //printf("%s",line[i]);
+        i++;
+    }
+
+    hu=i;
+
+    for(i=0; i<hu-2; i++)
+    {
+        k=i;
+        for(j=i+1; j<hu; j++)
+        {
+            if(line[j][0]<line[k][0])
+            {
+                k=j;
+            }
+        }
+        strcpy(temp, line[i]);
+        strcpy(line[i], line[k]);
+        strcpy(line[k], temp);
+    }
+
+    for(i=0;i<hu; i++)
+    {
+        char_slice(line[i]);
+        printf("%s",line[i]);
+    }
+
+    getch();
+    system("cls");
+}
+void dictionary_all_page(){
+    char searchvalue[100];
+    char line[100];
+    char num1[101];
+    int i=0;
+
+    while (1){
+        printf("방향키를 입력하여 정보 스크롤\n");
+        printf("exit: Esc\n");
+        int key = getch();
+        system("cls");
+        if(key==72){
+            i!=1?i--:i;
+            sprintf(num1,"search/%d.txt",i);
+            FILE* fp = fopen(num1,"r");
+            while(fgets(line,100, fp)){//줄별로 읽기
+                printf("%s",line);
+            }
+            printf("\n");
+        }
+        else if(key == 80){
+            i!=11?i++:i;
+            sprintf(num1,"search/%d.txt",i);
+            FILE* fp = fopen(num1,"r");
+            while(fgets(line,100, fp)){//줄별로 읽기
+                printf("%s",line);
+            }
+            printf("\n");
+        }
+        else if(key == 27){
+            break;
+        }
+    }
+}
 void main_center_UI(){//main 화면
     int a=0,b=0;
     int key;
@@ -206,41 +290,41 @@ void main_center_UI(){//main 화면
         draw_main();
         if(b==0){
             gotoxy(70-2,12);
-            printf(">겁색 입력");
+            printf(">검색 하기");
             gotoxy(70,13);
             printf("사전 전체 보기");
             gotoxy(70,14);
-            printf("조회");
+            printf("검색어 조회");
             gotoxy(70,15);
             printf("나가기");
         }
         else if(b==1){
             gotoxy(70,12);
-            printf("겁색 입력");
+            printf("검색 하기");
             gotoxy(70-2,13);
             printf(">사전 전체 보기");
             gotoxy(70,14);
-            printf("조회");
+            printf("검색어 조회");
             gotoxy(70,15);
             printf("나가기");
         }
         else if(b==2){
             gotoxy(70,12);
-            printf("겁색 입력");
+            printf("검색 하기");
             gotoxy(70,13);
             printf("사전 전체 보기");
             gotoxy(70-2,14);
-            printf(">조회");
+            printf(">검색어 조회");
             gotoxy(70,15);
             printf("나가기");
         }
         else if(b==3){
             gotoxy(70,12);
-            printf("겁색 입력");
+            printf("검색 하기");
             gotoxy(70,13);
             printf("사전 전체 보기");
             gotoxy(70,14);
-            printf("조회");
+            printf("검색어 조회");
             gotoxy(70-2,15);
             printf(">나가기");
         }
@@ -253,15 +337,20 @@ void main_center_UI(){//main 화면
         }
         system("cls");
         //printf("%d",key);
-        if(key==13 && b==0){//검색 화면 이동
-            search_main();
-        }
-        else if(key==13 && b==1){
-
-        }
-        else if(key==13 && b==3){
-            break;
-            //return;
+        if(key==13){
+            if(b==0){//검색 화면 이동
+                search_main();
+            }
+            else if(b==1){
+                dictionary_all_page();
+            }
+            else if(b==2){
+                search_inquiry();
+            }
+            else if(b==3){
+                break;
+                //return;
+            }
         }
     }
 }

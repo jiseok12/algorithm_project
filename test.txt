@@ -12,7 +12,7 @@ scanf//5
 void//6
 fgets//7
 fgets 사용법//7
-prinf//8
+printf//8
 printf 사용//8
 for 사용//9
 for//9
