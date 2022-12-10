@@ -3,6 +3,6 @@ br
 google
 naver
 search
-hello, world ìœ ë ˆ
-cì–¸ì–´ Hello, World ì¶œë ¥í•˜ê¸°
-cì–¸ì–´ printfë¡œ Hello, World ì¶œë ¥í•˜ê¸°
+hello, world À¯·¹
+c¾ð¾î Hello, World Ãâ·ÂÇÏ±â
+c¾ð¾î printf·Î Hello, World Ãâ·ÂÇÏ±â
