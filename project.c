@@ -9,6 +9,7 @@ line_length 함수 문자열 길이 구하기 문자열 길이 다름 수정
 }
 {기능
 12.10 검색 기능 구현(값 보기 구현X)
+12.10 검색한 화면 보이기
 }
 */
 
@@ -62,10 +63,10 @@ void push(char item, char item2){//스택 값 넣기
     //printf("push:%c %c\n",item, item2);
 }
 
-char pop(){ //반환후 제거
+void pop(){ //push한 값을 제거하고 같을 비교하는 변수에 값을 저장한다
 	if(isEmpty()){
 		printf("Stack is Empty\n");
-		return;
+		return ;
 	}
 	temp = s.data[s.top];
 	temp2 = s.data2[s.top];
@@ -82,6 +83,7 @@ int line_length(char line[100]){//저장된 파일의 길이 구하기
 }
 
 int string_comparison(char line[100], char searchvalue[100]){//문자열 같은지 검색 하는 함수
+
     printf("value:%s %s", line, searchvalue);
     printf("length: %d %d\n",line_length(line), strlen(searchvalue));
 
@@ -92,8 +94,8 @@ int string_comparison(char line[100], char searchvalue[100]){//문자열 같은지 검�
             push(line[i],searchvalue[i]);//line 변수와 searchvalue값을 인덱스 별로 넣기
 
         }
-        for(int i=0;i<line_length(line)-1;i++){
-            pop();
+        for(int i=0;i<line_length(line)-1;i++){//값을 pop하여 저장하고 같은지 비교하는 것을 반복함
+            pop();//pop 삭제와 temp temp2에값을 저장
             if(temp!=temp2){//값을 비교하고 다를때if문 실해
                 //printf("다름 %c %c\n",temp,temp2);//다른 값을 출력한다
                 return 0;//값이 다를 경우 0을 반환하여 string_comparison 함수를 나간다

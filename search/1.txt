@@ -1,1 +1,8 @@
-1
+hello, world
+br
+google
+naver
+search
+hello, world 유레
+c언어 Hello, World 출력하기
+c언어 printf로 Hello, World 출력하기
