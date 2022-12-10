@@ -82,11 +82,12 @@ int line_length(char line[100]){//저장된 파일의 길이 구하기
 }
 
 int string_comparison(char line[100], char searchvalue[100]){//문자열 같은지 검색 하는 함수
-    printf("%s %s\n", line, searchvalue);
+    printf("value:%s %s", line, searchvalue);
     printf("length: %d %d\n",line_length(line), strlen(searchvalue));
+
     if(line_length(line) == strlen(searchvalue)){//길이가 같을 경우 같은지 검사
         initStack();//스택 사용전 초기화 하기
-        //printf("진입\n"); //길이 성공여부 출력
+        printf("진입\n"); //길이 성공여부 출력
         for(int i=0;i<line_length(line)-1;i++){//값을 push 해주고 있음
             push(line[i],searchvalue[i]);//line 변수와 searchvalue값을 인덱스 별로 넣기
 
@@ -102,6 +103,7 @@ int string_comparison(char line[100], char searchvalue[100]){//문자열 같은지 검�
         return 1;//성공시 1을 반환한다
     }
     //printf("%s", searchvalue);
+    printf("\n\n");
     return 0;//문자열 길이가 다를 경우 0을 반환
 }
 int main(){
@@ -115,12 +117,11 @@ int main(){
     while(fgets(line,sizeof(line), fp) != NULL){//줄별로 읽기
         //printf("%s",line);
         if(string_comparison(line,searchvalue)){
-            printf("성공");
+            printf("성공\n\n");
         }
     }
 
     //printf("%s",searchvalue);//입력한 검색어 출력
-
 
     return 0;
 }
