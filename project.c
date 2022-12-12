@@ -8,7 +8,7 @@ line_length 함수 문자열 길이 구하기 문자열 길이 다름 수정
 파일 가져올때 한글깨짐 오류 수정
 ui 크기 않맞음 해결
 txt파일 위치 찾기 값 오류 수정
-검색어 알파벳순을 정렬시 한국어 깨짐 해결
+검색어조회시 알파벳순을 정렬시 한국어 깨짐 해결
 }
 {기능
 12.10 | 14:25 검색 기능 구현(값 보기 구현X)
@@ -22,6 +22,7 @@ txt파일 위치 찾기 값 오류 수정
 
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
+#include<iostream>
 #include<stdlib.h>
 #include<stdbool.h>
 #include<windows.h>
@@ -107,7 +108,7 @@ int string_comparison(char line[100], char searchvalue[100]){//문자열 같은지 검�
     if(line_length(line) == strlen(searchvalue)){//길이가 같을 경우 같은지 검사
         initStack();//스택 사용전 초기화 하기
         //printf("진입\n"); //길이 성공여부 출력
-        for(int i=0;i<line_length(line)-1;i++){//값을 push 해주고 있음
+        for(int i=0;i< line_length(line) -1;i++){//값을 push 해주고 있음
             push(line[i],searchvalue[i]);//line 변수와 searchvalue값을 인덱스 별로 넣기
 
         }
@@ -252,6 +253,7 @@ void search_inquiry(){//검색어
     getch();
     system("cls");
 }
+
 void dictionary_all_page(){
     char searchvalue[100];
     char line[100];
