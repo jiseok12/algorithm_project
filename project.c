@@ -22,12 +22,12 @@ txt파일 위치 찾기 값 오류 수정
 
 #define _CRT_SECURE_NO_WARNINGS
 #include<stdio.h>
-#include<iostream>
+//#include<iostream>
 #include<stdlib.h>
 #include<stdbool.h>
 #include<windows.h>
 #include<string.h>
-
+#include<conio.h>
 #define STACK_SIZE 100
 #define SEARCH_SIZE 100
 
@@ -366,7 +366,7 @@ int main(){
 
     FILE* fp = fopen("test.txt","r");//txt 파일 읽기로 열기
     system("mode con cols=146 lines=30 | title 초보 계발자를 위한 사전");
-    main_center_UI(line,searchvalue, fp);
+    main_center_UI();
     //printf("%s",searchvalue);//입력한 검색어 출력
 
     return 0;
